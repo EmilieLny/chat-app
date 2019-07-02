@@ -30,3 +30,9 @@ const createChat = ({messages = [], name = "Community", users = []} = {}) => (
         typingUsers:[]
     }
 );
+
+module.exports = {
+    createUser,
+    createMessage,
+    createChat,
+};

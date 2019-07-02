@@ -12,14 +12,18 @@ export default class LoginForm extends Component {
     }
 
     setUser = ({ user, isUser }) => {
-
         if(isUser){
             this.setError("User name already taken, sorry..")
-        }else{
+        } else {
             this.setError("");
             this.props.setUser(user)
         }
     };
+
+    setError = (error)=>{
+        this.setState({ error })
+    };
+
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -30,10 +34,6 @@ export default class LoginForm extends Component {
 
     handleChange = (e) => {
         this.setState({ nickname: e.target.value })
-    };
-
-    setError = (error)=>{
-        this.setState({ error })
     };
 
     render() {
