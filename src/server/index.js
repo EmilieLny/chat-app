@@ -1,7 +1,7 @@
 let app = require('http').createServer();
 let io = module.exports.io = require('socket.io')(app);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 const SocketManager = require('./SocketManager');
 
