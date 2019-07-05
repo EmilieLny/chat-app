@@ -30,7 +30,6 @@ export default class ChatContainer extends Component {
     resetChat = (chat) => {
         const { socket } = this.props;
 
-        console.log('resetting the chat');
         this.setState({ activeChat: chat,  chats: [chat] } );
         const messageEvent = `${MESSAGE_RECEIVED}-${chat.id}`;
 
@@ -40,11 +39,8 @@ export default class ChatContainer extends Component {
 
     // adds message to chat with chatId
     addMessageToChat = (chatId) => {
-        console.log('addMessageToChat');
         return message => {
             const { chats } = this.state;
-            console.log(chats)
-
             let newChats = chats.map((chat) => {
                 chat.id === chatId && chat.messages.push(message);
                 return chat
@@ -68,15 +64,14 @@ export default class ChatContainer extends Component {
                 <div className="chat-room-container">
                     {
                         activeChat
-                        ?
-                        <div className="chat-room">
+                        ? <div className="chat-room">
                             <Messages
                                 messages={activeChat.messages}
                                 user={user}/>
                             <MessageInput sendMessage={(message) => { this.sendMessage(activeChat.id, message) }}/>
                         </div>
-                        : <div className="chat-room choose">
-                            <h3>Choose a chat!</h3>
+                        : <div className="chat-room load">
+                            <h3>Loading your profile..</h3>
                         </div>
                     }
                 </div>

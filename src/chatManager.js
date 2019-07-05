@@ -1,23 +1,21 @@
 const uuidv4 = require('uuid/v4');
-// let randomAvatar = require('random-avatar');
 
 
-// Creates a user.
+// Creates a user
 const createUser = ({name = "", socketId = null, avatar} = {}) => (
     {
         id: uuidv4(),
         name,
         socketId,
-        // avatar: randomAvatar()
         avatar
     }
 );
 
-// Creates a messages object.
+// Creates a messages object
 const createMessage = ({message = "", sender = "", avatar} = {}) => (
     {
         id: uuidv4(),
-        time: new Date(Date.now()),
+        time: getTime(new Date(Date.now())),
         message,
         sender,
         avatar
@@ -33,6 +31,10 @@ const createChat = ({messages = [], name = "Community", users = []} = {}) => (
         users,
     }
 );
+
+const getTime = (date)=>{
+    return `${date.getHours()}:${("0"+date.getMinutes()).slice(-2)}`
+};
 
 module.exports = {
     createUser,

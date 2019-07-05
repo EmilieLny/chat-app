@@ -47,7 +47,7 @@ export default class Login extends Component {
                     </label>
 
                     <input
-                        // ref={(input)=>{ this.textInput = input }}
+                        ref={(input)=>{ this.textInput = input }}
                         type="text"
                         id= "nickname"
                         value={username}

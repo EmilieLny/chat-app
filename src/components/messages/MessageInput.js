@@ -12,10 +12,6 @@ export default class MessageInput extends Component {
 
     }
 
-    // componentWillUnmount() {
-    //     this.stopCheckingTyping()
-    // };
-
     handleSubmit = (e)=>{
         e.preventDefault(); // prevents page reloading
         this.sendMessage();
@@ -27,30 +23,11 @@ export default class MessageInput extends Component {
 
     };
 
-    sendTyping = () =>{
-        this.lastUpdateTime = Date.now()
-        if(!this.state.isTyping){
-            this.setState({isTyping:true})
-            this.props.sendTyping(true)
-            // this.startCheckingTyping()
-        }
-    };
-
-    // Start an interval that checks if the user is typing.
-    // startCheckingTyping = ()=> {
-    //     this.typingInterval = setInterval(()=>{
-    //         if((Date.now() - this.lastUpdateTime) > 300){
-    //             this.setState({isTyping:false})
-    //             this.stopCheckingTyping()
-    //         }
-    //     }, 300)
-    // };
-
-    // Start the interval from checking if the user is typing.
-    // stopCheckingTyping = ()=>{
-    //     if(this.typingInterval){
-    //         clearInterval(this.typingInterval);
-    //         this.props.sendTyping(false)
+    // sendTyping = () =>{
+    //     if(!this.state.isTyping){
+    //         this.setState({isTyping:true})
+    //         this.props.sendTyping(true)
+    //         // this.startCheckingTyping()
     //     }
     // };
 
@@ -70,8 +47,7 @@ export default class MessageInput extends Component {
                         className = "form-control"
                         value = { message }
                         autoComplete = {'off'}
-                        placeholder = "..."
-                        // onKeyUp = { e => { e.keyCode !== 13 && this.sendTyping() } }
+                        placeholder = "Type your message here..."
                         onChange = {
                             ({target})=>{
                                 this.setState({message:target.value})
