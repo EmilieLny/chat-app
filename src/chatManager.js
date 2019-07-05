@@ -1,22 +1,26 @@
-const uuidv4 = require('uuid/v4')
+const uuidv4 = require('uuid/v4');
+// let randomAvatar = require('random-avatar');
 
 
 // Creates a user.
-const createUser = ({name = "", socketId = null} = {}) => (
+const createUser = ({name = "", socketId = null, avatar} = {}) => (
     {
         id: uuidv4(),
         name,
-        socketId
+        socketId,
+        // avatar: randomAvatar()
+        avatar
     }
 );
 
 // Creates a messages object.
-const createMessage = ({message = "", sender = ""} = {}) => (
+const createMessage = ({message = "", sender = "", avatar} = {}) => (
     {
         id: uuidv4(),
         time: new Date(Date.now()),
         message,
-        sender
+        sender,
+        avatar
     }
 );
 
@@ -27,7 +31,6 @@ const createChat = ({messages = [], name = "Community", users = []} = {}) => (
         name,
         messages,
         users,
-        typingUsers:[]
     }
 );
 

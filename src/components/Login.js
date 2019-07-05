@@ -1,43 +1,43 @@
 import React, { Component } from 'react';
 import { VERIFY_USER } from '../const'
 
-export default class LoginForm extends Component {
+export default class Login extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            nickname: "",
+            username: "",
             error: ""
         };
     }
 
-    setUser = ({ user, isUser }) => {
-        if(isUser){
+    setUser = ({ user, isUserExisting }) => {
+        if (isUserExisting) {
             this.setError("User name already taken, sorry..")
         } else {
+            this.props.setUser(user);
             this.setError("");
-            this.props.setUser(user)
         }
     };
 
-    setError = (error)=>{
+    setError = (error) => {
         this.setState({ error })
     };
 
 
     handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault(); // prevents page reloading
         const { socket } = this.props;
-        const { nickname } = this.state;
-        socket.emit(VERIFY_USER, nickname, this.setUser)
+        const { username } = this.state;
+        socket.emit( VERIFY_USER, username, this.setUser)
     };
 
     handleChange = (e) => {
-        this.setState({ nickname: e.target.value })
+        this.setState({ username: e.target.value })
     };
 
     render() {
-        const { nickname, error } = this.state;
+        const { username, error } = this.state;
         return (
             <div className="login">
                 <form onSubmit={this.handleSubmit} className="login-form" >
@@ -45,13 +45,14 @@ export default class LoginForm extends Component {
                     <label htmlFor="nickname">
                         <h2>Enter your username</h2>
                     </label>
+
                     <input
-                        ref={(input)=>{ this.textInput = input }}
+                        // ref={(input)=>{ this.textInput = input }}
                         type="text"
-                        id="nickname"
-                        value={nickname}
+                        id= "nickname"
+                        value={username}
                         onChange={this.handleChange}
-                        placeholder={'...'}
+                        placeholder={'Your username'}
                     />
                     <div className="error">{ !!error && error }</div>
 

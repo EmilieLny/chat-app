@@ -1,8 +1,8 @@
 import React from 'react';
 import io from 'socket.io-client';
-import { USER_CONNECTED, LOGOUT } from '../const';
-import LoginForm from './Login';
-// import ChatContainer from './chats/ChatContainer'
+import { USER_CONNECTED } from '../const';
+import Login from './Login';
+import ChatContainer from './chat/chatContainer'
 
 
 const SOCKET_URL ="localhost:5000";
@@ -17,36 +17,25 @@ export default class Layout extends React.Component {
     };
 
     componentWillMount() {
-        this.initSocket();
+       this.connectSocket();
     }
 
-    // Connect to and initializes the socket.
-    initSocket = () => {
+    // Connect to and initializes the socket
+    connectSocket = () => {
         const socket = io(SOCKET_URL);
 
         socket.on('connect', () => {
-            console.log('Connected to socket.io !')
+            this.setState({ socket })
         });
-
-        this.setState({ socket })
     };
 
-    // Sets user state
+    // Set user to the open session
     setUser = (user)=>{
         const { socket } = this.state;
 
         socket.emit(USER_CONNECTED, user);
 
-        this.setState({ user })
-    };
-
-    // Sets user state logout => null
-    logout = ()=>{
-        const { socket } = this.state;
-
-        socket.emit(LOGOUT);
-
-        this.setState({ user: null })
+        this.setState({ user });
     };
 
     render() {
@@ -54,7 +43,9 @@ export default class Layout extends React.Component {
         return (
             <div className="container">
                 {
-                    <LoginForm socket={ socket } setUser={ this.setUser } />
+                    user
+                    ? <ChatContainer socket={ socket } user={ user } />
+                    : <Login socket={ socket } setUser={ this.setUser } />
                 }
             </div>
         );

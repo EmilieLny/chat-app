@@ -9,9 +9,4 @@ module.exports = {
     // message
     MESSAGE_SENT:"MESSAGE_SENT",
     MESSAGE_RECEIVED:"MESSAGE_RECEIVED",
-    PRIVATE_MESSAGE:"PRIVATE_MESSAGE",
-
-    // state
-    TYPING:"TYPING",
-    LOGOUT:"LOGOUT",
 };
