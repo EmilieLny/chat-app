@@ -47,12 +47,12 @@ export default class Login extends Component {
                     </label>
 
                     <input
-                        ref={(input)=>{ this.textInput = input }}
                         type="text"
                         id= "nickname"
                         value={username}
                         onChange={this.handleChange}
                         placeholder={'Your username'}
+                        autoFocus
                     />
                     <div className="error">{ !!error && error }</div>
 

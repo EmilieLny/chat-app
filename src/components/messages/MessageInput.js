@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 
 export default class MessageInput extends Component {
-
     constructor(props) {
         super(props);
-
         this.state = {
             message:"",
             isTyping:false
@@ -15,7 +13,7 @@ export default class MessageInput extends Component {
     handleSubmit = (e)=>{
         e.preventDefault(); // prevents page reloading
         this.sendMessage();
-        this.setState({message:""})
+        this.setState({ message: "" } )
     };
 
     sendMessage = ()=>{
@@ -23,17 +21,9 @@ export default class MessageInput extends Component {
 
     };
 
-    // sendTyping = () =>{
-    //     if(!this.state.isTyping){
-    //         this.setState({isTyping:true})
-    //         this.props.sendTyping(true)
-    //         // this.startCheckingTyping()
-    //     }
-    // };
-
 
     render() {
-        const { message } = this.state
+        const { message } = this.state;
         return (
             <div className="message-input">
                 <form
@@ -46,6 +36,7 @@ export default class MessageInput extends Component {
                         type = "text"
                         className = "form-control"
                         value = { message }
+                        autoFocus
                         autoComplete = {'off'}
                         placeholder = "Type your message here..."
                         onChange = {
@@ -58,7 +49,6 @@ export default class MessageInput extends Component {
                         disabled = { message.length < 1 }
                         type = "submit"
                         className = "send"
-
                     > Send </button>
                 </form>
 

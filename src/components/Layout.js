@@ -13,7 +13,7 @@ export default class Layout extends React.Component {
         this.state = {
             socket: null,
             user: null,
-        }
+        };
     };
 
     componentWillMount() {
@@ -30,7 +30,7 @@ export default class Layout extends React.Component {
     };
 
     // Set user to the open session
-    setUser = (user)=>{
+    setUser = (user) => {
         const { socket } = this.state;
 
         socket.emit(USER_CONNECTED, user);
@@ -40,6 +40,7 @@ export default class Layout extends React.Component {
 
     render() {
         const { socket, user } = this.state;
+        console.log(socket)
         return (
             <div className="container">
                 {

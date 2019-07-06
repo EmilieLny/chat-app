@@ -7,7 +7,6 @@ import MessageInput from '../messages/MessageInput';
 export default class ChatContainer extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             activeChat: null
         };
@@ -30,30 +29,27 @@ export default class ChatContainer extends Component {
     resetChat = (chat) => {
         const { socket } = this.props;
 
-        this.setState({ activeChat: chat,  chats: [chat] } );
+        this.setState({ activeChat: chat } );
         const messageEvent = `${MESSAGE_RECEIVED}-${chat.id}`;
 
-        socket.on(messageEvent, this.addMessageToChat(chat.id))
+        socket.on(messageEvent, this.addMessageToChat(chat))
     };
 
 
     // adds message to chat with chatId
-    addMessageToChat = (chatId) => {
+    addMessageToChat = (chat) => {
         return message => {
-            const { chats } = this.state;
-            let newChats = chats.map((chat) => {
-                chat.id === chatId && chat.messages.push(message);
-                return chat
-            });
+            let updatedChat = chat;
+            updatedChat.messages.push(message);
 
-            this.setState({ chats: newChats })
+            this.setState({ activeChat: updatedChat })
         }
     };
 
     // Adds a message to the specified chat
     sendMessage = (chatId, message)=>{
         const { socket } = this.props;
-        socket.emit(MESSAGE_SENT, {chatId, message} )
+        socket.emit(MESSAGE_SENT, { chatId, message } )
     };
 
     render() {
@@ -63,15 +59,11 @@ export default class ChatContainer extends Component {
             <div className="container">
                 <div className="chat-room-container">
                     {
-                        activeChat
-                        ? <div className="chat-room">
+                        activeChat && <div className="chat-room">
                             <Messages
                                 messages={activeChat.messages}
                                 user={user}/>
                             <MessageInput sendMessage={(message) => { this.sendMessage(activeChat.id, message) }}/>
-                        </div>
-                        : <div className="chat-room load">
-                            <h3>Loading your profile..</h3>
                         </div>
                     }
                 </div>

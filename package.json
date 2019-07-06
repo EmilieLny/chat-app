@@ -2,6 +2,8 @@
   "name": "chat-pecptv",
   "version": "0.1.0",
   "private": true,
+  "author": "Emilie Layani - 2019",
+  "keywords": [ "chat", "socket.io" ],
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

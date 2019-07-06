@@ -76,12 +76,6 @@ input, textarea {
     width: 100%;
 }
 
-.chat-room.load {
-    align-items: center;
-    justify-content: center;
-    font-size: 2em;
-}
-
 .thread-container {
     flex-grow: 1;
     overflow-y: scroll;
