@@ -2,6 +2,15 @@
 
 Real-time Chat App developed in React and Node.js, using [Socket.io](https://socket.io/get-started/chat)!
 
+## Requirments
+
+**Client:**
+- **Create a message** – User is able to type a text and send it to the room.
+- **See messages** – The user is able to see all the messages that are being sent to the room (his own messages included, with the exception that the user's own messages should have a different background color). In addition, the users should see the message itself together with the sender's username and a random avatar (Avatar images should be persistent across sessions).
+
+**Server:**
+- **Socket.IO Integration** - Write a server-side code that is responsible for listening to incoming chat requests and echoing the requests back to the clients. The code should use socket.io to implement this functionality. More on how to use socket.io you can find in this getting started guide.
+
 ## Installation
 
 Install the dependencies by running the following commande: 
